@@ -1,5 +1,5 @@
 # MADna-LAMMPS
-LAMMPS implementation of MADna, a coarse-grained model for sequence-dependent elasticity and conformation of DNA
+LAMMPS implementation of MADna, a coarse-grained model for sequence-dependent elasticity and conformation of DNA. In order to run MADna within LAMMPS, the latter has to be built with the packages EXTRA-MOLECULE and EXTRA-PAIR. Morover, for application of torque according to the scripts provided in the folder "additional" (see below), also the package EXTRA-FIX is needed. 
 
 There are two folders, for which more details are provided below:
 - **Initialization**: This folder contains all the scripts needed to create the topology and initial configuration of a double-stranded DNA molecule from its sequence
@@ -7,13 +7,13 @@ There are two folders, for which more details are provided below:
 
 ## Initialization
 This folder contains scripts for generation of MADna topology and initial configuration of a double-stranded DNA molecule in LAMMPS format. To execute the scripts, **python3 is needed with libraries sys, os, numpy, copy**.  
-From the user's perspective, the only relevant script is **Initialization.py**, which imports the other ones as libraries. Usage of the script is pretty straightforward:
+From the user's perspective, the only relevant script is **Initialization.py**, which imports the other ones as libraries (further useful scripts are found in the subfolder "additional", as commented below). Usage of the script is pretty straightforward:
 ```
 Initialization/Initialization.py sequence folder ionic_strength temperature
 ```
 Hence, the script needs four inputs:
 - sequence: the sequence of the leading strand in the 5'-3' direction
-- folder: the folder where the variour files will be stored (if the folder does not exist, it is created automatically)
+- folder: the folder where the various files will be stored (if the folder does not exist, it is created automatically)
 - ionic strength: the ionic strength of the solution in mM
 - temperature: the temperature of the system in K
 
