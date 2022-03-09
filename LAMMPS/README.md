@@ -7,4 +7,18 @@ There are two folders, for which more details are provided below:
 
 ## Initialization
 This folder contains scripts for generation of MADna topology and initial configuration of a double-stranded DNA molecule in LAMMPS format. To execute the scripts, **python3 is needed with libraries sys, os, numpy, copy**.  
-From the user's perspective, the 
+From the user's perspective, the only relevant script is **Initialization.py**, which imports the other ones as libraries. Usage of the script is pretty straightforward:
+```
+Initialization/Initialization.py sequence folder ionic_strength temperature
+```
+Hence, the script needs four inputs:
+- sequence: the sequence of the leading strand in the 5'-3' direction
+- folder: the folder where the variour files will be stored (if the folder does not exist, it is created automatically)
+- ionic strength: the ionic strength of the solution in mM
+- temperature: the temperature of the system in K
+
+For instance, the following command
+```
+Initialization/Initialization.py CAAGATGC mySim/initialization 150 300
+```
+creates the files needed to simulate a DNA molecule with sequence 5'-CAAGATGC-3' (corresponding to 5'-GCATCTTG-3' on the other strand) embedded in a solution containing 150 mM of salt and at temperature 300 K, and stores the file in the folder mySim/initialization
