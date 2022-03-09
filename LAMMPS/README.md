@@ -94,7 +94,8 @@ fix fB fB addforce v_fxB v_fyB v_fzB
 This folder contains useful scripts to analyze the output of LAMMPS simulations based on MADna. **The codes need a c++ compiler and the GNU Scientific Library (gsl) installed in your system**. They have been tested using g++ 11.2.0 and gsl 2.7.
 
 Four scripts are currently available:
-1) **Compute_Ext_CumulateTwist_Crookedness.cpp** computes the extension, total twist and crookedness of a DNA fragment. In its current stage, this code works properly on molecules composed of roughly 20 base pairs, since the helical axis is defined globally for the whole molecule. Its usage is as follows (it is assumed that the compiled executable is named as the script without the .cpp extension)
+### 1) Compute_Ext_CumulateTwist_Crookedness.cpp
+It computes the extension, total twist and crookedness of a DNA fragment. In its current stage, this code works properly on molecules composed of roughly 20 base pairs, since the helical axis is defined globally for the whole molecule. Its usage is as follows (it is assumed that the compiled executable is named as the script without the .cpp extension)
 ```
 Compute_Ext_CumulateTwist_Crookedness trajectory seed start stop
 ```
@@ -104,7 +105,8 @@ Compute_Ext_CumulateTwist_Crookedness dump.lammpstrj 1311 5 14
 ```
 analyzes the fragment within nucleotides 5 and 14 (included) for the trajectory ```dump.lammpstrj```. The output is in four columns, giving for each frame the timestep, extension (nm), cumulate twist (rad) and crookedness.
 
-2) **ComputeHelicalParameters_global.cpp** computes the various geometrical features of the molecule under inspection. Its usage is as follows:
+### 2) ComputeHelicalParameters_global.cpp
+It computes the various geometrical features of the molecule under inspection. Its usage is as follows:
 ```
 ComputeHelicalParameters_global trajectory seed prefix
 ```
@@ -117,3 +119,14 @@ analyzes the trajectory ```dump.lammpstrj``` and saves the results in a series o
 - *hel_hrise*: Lseq columns (where Lseq is the length of the sequence) containing timestep (column 1) and hrise for the Lseq-1 steps (nm); at the current stage it is meaningful only for molecules composed of roughly 20 base pairs
 - *hel_htwist*: Lseq columns containing timestep (column 1) and htwist for the Lseq-1 steps (deg); at the current stage it is meaningful only for molecules composed of roughly 20 base pairs
 - *hel_major_groove_width, hel_minor_groove_width, hel_major_groove_depth, hel_minor_groove_depth*: Lseq+1 columns containing timestep (column 1) and the groove feature corresponding to the filename for all the base pairs (nm); close to the ends, groove geometry might not be determined, in which case a large negative number is displayed (-1e9)
+
+### 3) Compute_Ext_CumulateTwist_zaxis.cpp
+It computes the extension and total twist of a DNA fragment in the z direction. Its usage is as follows (it is assumed that the compiled executable is named as the script without the .cpp extension)
+```
+Compute_Ext_CumulateTwist_zaxis trajectory start stop
+```
+where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```start``` and ```stop``` are the first and last nucleotides of the fragment to be examined. For instance, the following command
+```
+Compute_Ext_CumulateTwist_zaxis dump.lammpstrj 5 14
+```
+analyzes the fragment within nucleotides 5 and 14 (included) for the trajectory ```dump.lammpstrj```. The output is in three columns, giving for each frame the timestep, extension (nm) and cumulate twist (rad). 
