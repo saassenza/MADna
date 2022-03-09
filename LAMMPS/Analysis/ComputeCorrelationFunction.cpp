@@ -74,6 +74,22 @@ int main(int argc, char*argv[])
 		return 0;
 	}
 
+	if (i00 < 1+s0/2)
+	{
+		cerr<<"Error: start nucleotide must be larger than or equal to 1+s0/2 = "<<1+s0/2<<endl;
+		return 0;
+	}
+	if (i11 > lseq-s0/2)
+	{
+		cerr<<"Error: stop nucleotide must be lower than or equal to lseq-s0/2 = "<<lseq-s0/2<<endl;
+		return 0;
+	}
+	if (i11 <= i00)
+	{
+		cerr<<"Error: stop nucleotide must be larger than start nucleotide"<<endl;
+		return 0;
+	}
+
 	double lstep = 0;
         int nstep = 0;
 
