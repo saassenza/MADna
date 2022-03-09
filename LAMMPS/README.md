@@ -98,8 +98,18 @@ Four scripts are currently available:
 ```
 Compute_Ext_CumulateTwist_Crookedness trajectory seed start stop
 ```
-where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```seed``` is a positive integer to seed the gsl random number generator (needed for the determination of the helical axis); start and stop are the first and last nucleotides of the fragment to be examined. For instance, the following command
+where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```seed``` is a positive integer to seed the gsl random number generator (needed for the determination of the helical axis); ```start``` and ```stop``` are the first and last nucleotides of the fragment to be examined. For instance, the following command
 ```
 Compute_Ext_CumulateTwist_Crookedness dump.lammpstrj 1311 5 14
 ```
 analyzes the fragment within nucleotides 5 and 14 (included) for the trajectory ```dump.lammpstrj```. The output is in four columns, giving for each frame the timestep, extension (nm), cumulate twist (rad) and crookedness.
+
+2) **ComputeHelicalParameters.cpp** computes the various geometrical features of the molecule under inspection. Its usage is as follows:
+```
+ComputeHelicalParameters trajectory seed prefix
+```
+where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```seed``` is a positive integer to seed the gsl random number generator (needed for the determination of the helical axis); ```prefix``` is a label to prepend in the names of the output files. For instance, the following command
+```
+ComputeHelicalParameters dump.lammpstrj 2358 hel
+```
+analyzes the trajectory ```dump.lammpstrj``` and saves the results in a series of files with prefix ```hel```. Particularly, the following 
