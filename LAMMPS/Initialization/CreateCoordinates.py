@@ -2,14 +2,8 @@
 
 #### this is for 2d (molecule aligned with the x axis, so it lies roughly on the xy plane)
 
-import sys
-import math
 import numpy as np
 import copy
-import glob
-import os
-from itertools import islice
-import re
 
 def stampa(*argv):
     s = ""
