@@ -91,4 +91,15 @@ fix fA fA addforce v_fxA v_fyA v_fzA
 fix fB fB addforce v_fxB v_fyB v_fzB
 ```
 ## Analysis
-This folder contains useful scripts to analyze the output of LAMMPS simulations based on MADna. **The codes need a c++ compiler and the gsl library installed in your system**. They have been tested using g++ 11.2.0 and gsl 2.7
+This folder contains useful scripts to analyze the output of LAMMPS simulations based on MADna. **The codes need a c++ compiler and the GNU Scientific Library (gsl) installed in your system**. They have been tested using g++ 11.2.0 and gsl 2.7.
+
+Four scripts are currently available:
+1) **Compute_Ext_CumulateTwist_Crookedness.cpp** computes the extension, total twist and crookedness of a DNA fragment. In its current stage, this code works properly on molecules composed of roughly 20 base pairs, since the helical axis is defined globally for the whole molecule. Its usage is as follows (it is assumed that the compiled executable is named as the script without the .cpp extension)
+```
+Compute_Ext_CumulateTwist_Crookedness trajectory seed start stop
+```
+where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```seed``` is a positive integer to seed the gsl random number generator (needed for the determination of the helical axis); start and stop are the first and last nucleotides of the fragment to be examined. For instance, the following command
+```
+Compute_Ext_CumulateTwist_Crookedness dump.lammpstrj 1311 5 14
+```
+analyzes the fragment within nucleotides 5 and 14 (included) for the trajectory ```dump.lammpstrj```. The output is in four columns, giving for each frame the timestep, extension (nm), cumulate twist (rad) and crookedness.
