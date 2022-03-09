@@ -104,12 +104,16 @@ Compute_Ext_CumulateTwist_Crookedness dump.lammpstrj 1311 5 14
 ```
 analyzes the fragment within nucleotides 5 and 14 (included) for the trajectory ```dump.lammpstrj```. The output is in four columns, giving for each frame the timestep, extension (nm), cumulate twist (rad) and crookedness.
 
-2) **ComputeHelicalParameters.cpp** computes the various geometrical features of the molecule under inspection. Its usage is as follows:
+2) **ComputeHelicalParameters_global.cpp** computes the various geometrical features of the molecule under inspection. Its usage is as follows:
 ```
-ComputeHelicalParameters trajectory seed prefix
+ComputeHelicalParameters_global trajectory seed prefix
 ```
 where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```seed``` is a positive integer to seed the gsl random number generator (needed for the determination of the helical axis); ```prefix``` is a label to prepend in the names of the output files. For instance, the following command
 ```
-ComputeHelicalParameters dump.lammpstrj 2358 hel
+ComputeHelicalParameters_global dump.lammpstrj 2358 hel
 ```
-analyzes the trajectory ```dump.lammpstrj``` and saves the results in a series of files with prefix ```hel```. Particularly, the following 
+analyzes the trajectory ```dump.lammpstrj``` and saves the results in a series of files with prefix ```hel```. Particularly, the following files are created:
+- *hel_diameter*: two columns containing timestep and global diameter (nm); at the current stage it is meaningful only for molecules composed of roughly 20 base pairs.
+- *hel_hrise*: Lseq columns (where Lseq is the length of the sequence) containing timestep (column 1) and hrise for the Lseq-1 steps (nm); at the current stage it is meaningful only for molecules composed of roughly 20 base pairs
+- *hel_htwist*: Lseq columns containing timestep (column 1) and htwist for the Lseq-1 steps (deg); at the current stage it is meaningful only for molecules composed of roughly 20 base pairs
+- *hel_major_groove_width, hel_minor_groove_width, hel_major_groove_depth, hel_minor_groove_depth*: Lseq+1 columns containing timestep (column 1) and the groove feature corresponding to the filename for all the base pairs (nm); close to the ends, groove geometry might not be determined, in which case a large negative number is displayed (-1e9)
