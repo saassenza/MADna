@@ -1,5 +1,5 @@
 # MADna-LAMMPS
-LAMMPS implementation of MADna, a coarse-grained model for sequence-dependent elasticity and conformation of DNA. In order to run MADna within LAMMPS, the latter has to be built with the packages EXTRA-MOLECULE and EXTRA-PAIR. Morover, for application of torque according to the scripts provided in the folder "additional" (see below), also the package EXTRA-FIX is needed. 
+LAMMPS implementation of MADna, a coarse-grained model for sequence-dependent elasticity and conformation of DNA. **In order to run MADna within LAMMPS, the latter has to be built with the packages EXTRA-MOLECULE and EXTRA-PAIR**. Morover, for application of torque according to the scripts provided in the folder "additional" (see below), also the package EXTRA-FIX is needed. The code has been tested for the version 29 Sep 2021.
 
 There are two folders, for which more details are provided below:
 - **Initialization**: This folder contains all the scripts needed to create the topology and initial configuration of a double-stranded DNA molecule from its sequence
@@ -28,3 +28,7 @@ The script generates four files:
 - **stdump.lammpstrj** contains the initial coordinates of the beads within the molecule, written in LAMMPS format
 - **chain.dat** contains the topology of the molecule in LAMMPS format (units correspond to the "real" format in LAMMPS)
 - **lammps.in** is a minimal script for simulation of the system in LAMMPS, where the dynamics is run for 10 ns with a dump every 10 ps. Note that a group of commented lines indicates the point of the script where additional features can be added (see below)
+
+Additionally, in the subfolder "additional" there are two other useful scripts to implement a pulling force and a torque:
+- **pulling_torque.py** generates the code to apply a pulling force and a torque in the z direction, according to the protocol employed in https://doi.org/10.1101/2021.12.02.470889 to generate Fig.6 (see section "Methods/Molecular dynamics Simulations/Stretch-torsion simulations")
+- **pulling_AMBER_protocol.py** generates the code to apply a pulling force directed along the end-to-end vector of the DNA molecule, see Fig.4 and Fig.5 in  https://doi.org/10.1101/2021.12.02.470889 and section "Methods/Molecular dynamics Simulations/Benchmark simulations"
