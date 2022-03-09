@@ -90,3 +90,5 @@ group fB id 4 42
 fix fA fA addforce v_fxA v_fyA v_fzA
 fix fB fB addforce v_fxB v_fyB v_fzB
 ```
+## Analysis
+This folder contains useful scripts to analyze the output of LAMMPS simulations based on MADna. **The codes need a c++ compiler and the gsl library installed in your system**. They have been tested using g++ 11.2.0 and gsl 2.7
