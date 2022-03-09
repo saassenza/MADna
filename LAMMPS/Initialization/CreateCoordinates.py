@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#### this is for 2d (molecule aligned with the x axis, so it lies roughly on the xy plane)
-
 import numpy as np
 import copy
 
