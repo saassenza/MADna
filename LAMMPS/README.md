@@ -1,5 +1,5 @@
 # MADna-LAMMPS
-LAMMPS implementation of MADna, a coarse-grained model for sequence-dependent elasticity and conformation of DNA. **In order to run MADna within LAMMPS, the latter has to be built with the packages EXTRA-MOLECULE and EXTRA-PAIR**. Morover, for application of torque according to the scripts provided in the folder "additional" (see below), also the package EXTRA-FIX is needed. The code has been tested for the version 29 Sep 2021.
+LAMMPS implementation of MADna, a coarse-grained model for sequence-dependent elasticity and conformation of DNA (https://doi.org/10.1101/2021.12.02.470889). **In order to run MADna within LAMMPS, the latter has to be built with the packages EXTRA-MOLECULE and EXTRA-PAIR**. Morover, for application of torque according to the scripts provided in the folder "additional" (see below), also the package EXTRA-FIX is needed. The code has been tested for the version 29 Sep 2021.
 
 There are two folders, for which more details are provided below:
 - **Initialization**: This folder contains all the scripts needed to create the topology and initial configuration of a double-stranded DNA molecule from its sequence
