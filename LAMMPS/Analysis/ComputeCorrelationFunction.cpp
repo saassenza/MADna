@@ -13,7 +13,7 @@
 using namespace std;
 
 ////// GLOBAL VARIABLES
-int natoms, lseq, s0 = 10, i00, i11;
+int natoms, lseq, s0, i00, i11;
 double timestep;
 vector <double> coordinates[3];
 vector <int> tipologia;
@@ -43,17 +43,21 @@ void print_vec(double *vettore, int vecsize);
 int main(int argc, char*argv[])
 {
 
-	if (argc != 3+1)
+	if (argc != 5+1)
         {
                 cout<<"Inputs:"<<endl;
                 cout<<"1 --> trajectory"<<endl;
-                cout<<"2 --> handle (# of bps to exclude from each end)"<<endl;
-                cout<<"3 --> output file"<<endl;
+                cout<<"2 --> s0 (# of bps separating two points)"<<endl;
+                cout<<"3 --> start nucleotide"<<endl;
+                cout<<"4 --> stop nucleotide"<<endl;
+                cout<<"5 --> output file"<<endl;
                 return 0;
         }
 	string trajectory(argv[1]);
-        int handle = atoi(argv[2]);
-	string corr_file(argv[3]);
+        s0 = atoi(argv[2]);
+	i00 = atoi(argv[3]);
+	i11 = atoi(argv[4]);
+	string corr_file(argv[5]);
 
 	cout << setprecision(10);
 	
@@ -70,8 +74,6 @@ int main(int argc, char*argv[])
 		return 0;
 	}
 
-	i00 = handle + 1;
-        i11 = lseq - handle;
 	double lstep = 0;
         int nstep = 0;
 
