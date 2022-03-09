@@ -22,3 +22,9 @@ For instance, the following command
 Initialization/Initialization.py CAAGATGC mySim/initialization 150 300
 ```
 creates the files needed to simulate a DNA molecule with sequence 5'-CAAGATGC-3' (corresponding to 5'-GCATCTTG-3' on the other strand) embedded in a solution containing 150 mM of salt and at temperature 300 K, and stores the file in the folder mySim/initialization
+
+The script generates four files:
+- **sequence.dat** contains the chosen sequence as a simple text
+- **stdump.lammpstrj** contains the initial coordinates of the beads within the molecule, written in LAMMPS format
+- **chain.dat** contains the topology of the molecule in LAMMPS format (units correspond to the "real" format in LAMMPS)
+- **lammps.in** is a minimal script for simulation of the system in LAMMPS, where the dynamics is run for 10 ns with a dump every 10 ps. Note that a group of commented lines indicates the point of the script where additional features can be added (see below)
