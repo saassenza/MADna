@@ -135,11 +135,12 @@ analyzes the fragment within nucleotides 5 and 14 (included) for the trajectory 
 ### 4) ComputeCorrelationFunction.cpp
 It computes the tangent-tangent correlation function of a DNA molecule according to the "sugars" definition in https://doi.org/10.1101/2021.12.02.470889. Its usage is as follows:
 ```
-ComputeCorrelationFunction trajectory handle output
+ComputeCorrelationFunction trajectory s0 start stop output
 ```
-where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```handle``` is the number of end base pairs to be excluded from the analysis; ```output``` is the name of the output file. For instance, the following command
+where ```trajectory``` is the trajectory in LAMMPS format with fields ```id type xu yu zu``` (the format set in the script "lammps.in"); ```s0``` is the number of base pairs separating two consecutive points for the computation of the correlation function; ```start``` and ```stop``` are the first and last nucleotides of the fragment to be examined; ```output``` is the name of the output file. For instance, the following command
 ```
-ComputeCorrelationFunction dump.lammpstrj 10 myCorrelation
+ComputeCorrelationFunction dump.lammpstrj 10 30 60 myCorrelation
 ```
-analyzes the trajectory ```dump.lammpstrj``` excluding 10 base pairs from each end. The results are written in two files:
-- myCorrelation 
+analyzes the trajectory ```dump.lammpstrj``` considering the vectors joining points separated by 10 base pairs for the fragment including base pairs 30 to 60. The results are written in two files:
+- myCorrelation has n+1 columns, where n is the number of vectors encompassing the fragment under study; the first column is the timestep, the rest are the average cosines of the angles formed by vectors separated by multiples of s0. In the present example s0=10, hence the cosines correspond to vectors separated by 0 base pairs (column 2), 10 base pairs (column 3), 20 base pairs (column 4), 30 base pairs (column 5).
+- myCorrelation_step provides a single number, corresponding to the average contour length corresponding to s0 (nm). In this case, s0=10 will result is a value slightly larger than 3 nm. 
